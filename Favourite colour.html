@@ -1,1 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Favorite Color: Blue</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f8ff;
+      color: #333;
+      padding: 20px;
+    }
+    h1 {
+      color: blue;
+    }
+    .color-box {
+      width: 100px;
+      height: 100px;
+      background-color: blue;
+      margin: 10px 0;
+      border: 2px solid #000;
+    }
+    .message {
+      margin-top: 10px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>My Favorite Color: Blue</h1>
+  <p>Blue is calming, cool, and classic. It's my favorite color!</p>
+
+  <div class="color-box" id="colorBox"></div>
+
+  <button id="changeColorBtn">Change Box Color</button>
+
+  <h2>Tell Me Your Favorite Shade of Blue</h2>
+  <form id="shadeForm">
+    <label for="shadeInput">Favorite shade of blue:</label>
+    <input type="text" id="shadeInput" name="shade" required />
+    <button type="submit">Submit</button>
+  </form>
+
+  <div class="message" id="message"></div>
+
+  <script>
+    // Event Listener for Color Change
+    document.getElementById('changeColorBtn').addEventListener('click', function () {
+      const box = document.getElementById('colorBox');
+      const colors = ['navy', 'skyblue', 'royalblue', 'steelblue', 'dodgerblue'];
+      const currentColor = box.style.backgroundColor;
+      let newColor = colors[Math.floor(Math.random() * colors.length)];
+      while (newColor === currentColor) {
+        newColor = colors[Math.floor(Math.random() * colors.length)];
+      }
+      box.style.backgroundColor = newColor;
+    });
+
+    // Form Validation and Interaction
+    document.getElementById('shadeForm').addEventListener('submit', function (event) {
+      event.preventDefault();
+      const input = document.getElementById('shadeInput');
+      const message = document.getElementById('message');
+      if (input.value.trim() === '') {
+        message.textContent = 'Please enter a shade!';
+        message.style.color = 'red';
+      } else {
+        message.textContent = `Nice! ${input.value} is a beautiful shade of blue.`;
+        message.style.color = 'green';
+      }
+    });
+  </script>
+</body>
+</html>
 
